@@ -6,14 +6,20 @@ const cors = require('cors');
 
 const productRoutes = require('./routes/products.cjs');
 const authRoutes = require('./routes/auth.cjs');
-const cartRoutes = require('./routes/cart.cjs');   // ← new
+const cartRoutes = require('./routes/cart.cjs');
 
 const app = express();
 
-app.use(cors());
+// Allow requests from your frontend (local + Vercel)
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://all-delivery.vercel.app'   // 👈 replace with your actual Vercel URL later
+  ],
+  credentials: true,
+}));
 app.use(express.json());
 
-// Wait for MongoDB, THEN start the server
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
@@ -21,7 +27,7 @@ mongoose
 
     app.use('/api/products', productRoutes);
     app.use('/api/auth', authRoutes);
-    app.use('/api/cart', cartRoutes);               // ← new
+    app.use('/api/cart', cartRoutes);
 
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
