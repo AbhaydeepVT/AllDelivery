@@ -1,0 +1,32 @@
+/* import the Nunito font (used in the design) */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap');
+
+@import "tailwindcss";
+
+/* Force correct text‑size‑adjust to fix the browser warning */
+*,
+*::before,
+*::after {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@theme {
+  --font-rounded: 'Nunito', sans-serif;
+  --color-food-primary: #FF6B35;
+  --color-food-accent: #FFD166;
+  --color-food-bg: #FFF8F0;
+  --color-grocery-primary: #06D6A0;
+  --color-grocery-accent: #118AB2;
+  --color-grocery-bg: #F0FDF4;
+  --color-glass-bg: rgba(255, 255, 255, 0.25);
+  --color-glass-border: rgba(255, 255, 255, 0.4);
+  --color-dark-charcoal: #1A1A2E;
+  --color-neon-accent: #00F5D4;
+}
+
+body {
+  font-family: var(--font-rounded);
+  background: #fafafa;
+  overflow-x: hidden;
+}
